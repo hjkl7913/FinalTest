@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cos.baseball.repository.PlayerRepository">
+	<insert id="PlayerSave">
+		INSERT INTO player(teamId, teamName, playerName,
+		position, create_date) VALUES(#{teamId}, #{teamName}, #{playerName},
+		#{position}, now())
+	</insert>
+
+
+
+	<select id="playerListAll" resultMap="selectPlayer">
+		select p.id, t.teamName
+		,p.playerName, p.position , p.create_date,(SELECT COUNT(*) + 1
+		FROM player
+		WHERE playerName <![CDATA[ < ]]>  p.playerName) as "no"
+		from player p
+		inner join team t
+		on p.teamId = t.id
+		order by p.playerName
+	</select>
+
+	<resultMap type="hashMap" id="selectPlayer">
+	</resultMap>
+
+	<select id="playerPositionAll" resultMap="selectPositionPlayer">
+		select
+		p.position,
+		GROUP_CONCAT(if(t.teamName = '롯데', p.playerName, NULL)) AS 't1',
+		GROUP_CONCAT(if(t.teamName = 'NC', p.playerName, NULL)) AS 't2',
+		GROUP_CONCAT(if(t.teamName = 'LG', p.playerName, NULL)) AS 't3'
+		From
+		player AS p
+		JOIN team AS t
+		ON p.teamId = t.id
+		group by position;
+	</select>
+
+	<resultMap type="hashMap" id="selectPositionPlayer">
+	</resultMap>
+
+
+
+	<delete id="playerDeleteById">
+		DELETE FROM player WHERE id = #{id}
+	</delete>
+
+
+
+</mapper>

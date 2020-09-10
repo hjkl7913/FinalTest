@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.cos.baseball.repository.OutRepository">
+
+	<select id="teamPlayerOutListFindByName"
+		resultType="com.cos.baseball.model.dto.TeamPlayerOutDto">
+
+		SELECT p.id playerId, p.playerName playerName, p.position position, o.reason
+		reason, o.out_date outDate
+		FROM player p
+		LEFT OUTER JOIN team t ON p.teamId = t.id
+		LEFT OUTER JOIN outplayer o ON p.id = o.playerId
+		WHERE t.teamName = #{teamName}
+		ORDER BY p.id;
+		
+	</select>
+	
+	<insert id="playerOutSave">
+		INSERT INTO outplayer(playerId, playerName, reason, out_date) 
+		VALUES(#{playerId}, #{playerName}, #{reason},#{out_date})
+	</insert>
+	
+	<select id="playerOutFindById" resultType="com.cos.baseball.model.Player">
+		SELECT	* FROM player WHERE id = #{id}
+	</select>
+
+</mapper>

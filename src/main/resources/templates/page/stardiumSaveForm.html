@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/header"></th:block>
+	<div class="container">
+		<br />
+		<br />
+		<br />
+		<h2>야구장 등록 페이지</h2>
+		<br />
+		<br />
+
+		<form>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="야구장이름" id="groundName" name="playground">
+			</div>
+			<button id="btn-save" type="button" class="btn btn-primary">등록</button>
+		</form>
+	</div>
+	<script src="/js/playGround.js"></script>
+<br/><br/><br/>
+<th:block th:replace="layout/footer"></th:block>

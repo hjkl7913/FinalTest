@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/header"></th:block>
+<div class="container">
+
+	<br /> <br /> <br />
+	<h2>선수 등록 페이지</h2>
+	<br /> <br />
+
+	<form>
+		<div class="form-group">
+			<label>팀 이름 : </label> 
+			<select id="teamName" name="teamName">
+				<option th:each="teamList : ${teamLists}" th:value="${teamList.teamName}" th:text="${teamList.teamName}"></option>
+			</select>
+
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="선수이름" id="playerName" name="playerName">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="포지션" id="position" name="position">
+		</div>
+		<button id="btn-save" type="button" class="btn btn-primary">등록</button>
+	</form>
+</div>
+<script src="/js/player.js"></script>
+<br />
+<br />
+<br />
+<th:block th:replace="layout/footer"></th:block>

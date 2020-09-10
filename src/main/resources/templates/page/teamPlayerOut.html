@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/header"></th:block>
+	<div class="container">
+
+		<br /> <br /> <br />
+		<h2>팀별 퇴출선수 목록 보기 </h2>
+		<br /> <br />
+		<button class="btn btn-danger" th:onclick="teamPlayerOutList('롯데')">롯데</button>
+		<button class="btn btn-secondary" th:onclick="teamPlayerOutList('NC')">NC</button>
+		<button class="btn btn-info" th:onclick="teamPlayerOutList('LG')">LG</button>
+		<br /> <br />
+		<div class="col-md-9">
+			<table class="table table-list-search">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>선수 이름</th>
+						<th>포지션</th>
+						<th>퇴출 사유</th>
+						<th>퇴출 날짜</th>
+					</tr>
+				</thead>
+				<tbody class="team-player-out-list" >
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<script src="/js/teamPlayerOut.js"></script>
+<br/><br/><br/>
+<th:block th:replace="layout/footer"></th:block>

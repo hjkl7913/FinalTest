@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/header"></th:block>
+	<div class="container">
+
+		<br /> <br /> <br />
+		<h2>포지션별 팀의 야구선수 페이지</h2>
+		<br /> <br />
+		<div class="col-md-9">
+			<table class="table table-list-search">
+				<thead>
+					<tr>
+						<th>포지션</th>
+						<th>롯데</th>
+						<th>NC</th>
+						<th>LG</th>
+					</tr>
+				</thead>
+				<tbody class="playground-list" >
+					<tr th:each="playerPosition : ${playerPositions}">
+						<th th:text="${playerPosition.position}"></th>
+						<td th:text="${playerPosition.t1}"></td>
+						<td th:text="${playerPosition.t2}"></td>
+						<td th:text="${playerPosition.t3}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<script src="/js/team.js"></script>
+<br/><br/><br/>
+<th:block th:replace="layout/footer"></th:block>

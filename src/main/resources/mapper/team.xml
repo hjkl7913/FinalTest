@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cos.baseball.repository.TeamRepository">
+	<insert id="TeamSave">
+		INSERT INTO team(groundId, teamName, create_date) VALUES(#{groundId}, #{teamName}, now())
+	</insert>
+	
+	<select id="TeamFindByGId" resultType="com.cos.baseball.model.Team">
+		SELECT * from team where groundId = #{groundId}
+	</select>
+	
+	<select id="TeamFindByTTeamName" resultType="com.cos.baseball.model.Team">
+		SELECT * from team where teamName = #{tempTeamName}
+	</select>
+	
+	<select id="teamListAll" resultMap="selectTeam" >
+		select
+		id, groundId, teamName, create_date,
+		(@rank :=@rank+1)AS no
+		FROM
+		team As a,
+		( SELECT @rank := 0 ) AS b
+		ORDER BY
+		a.teamName asc
+	</select>
+	
+	<resultMap type="hashMap" id="selectTeam">	
+	</resultMap>
+	
+	<delete id="teamDeleteById">
+		DELETE FROM team WHERE id = #{id}
+	</delete>
+	
+</mapper>

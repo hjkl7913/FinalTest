@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="layout/header"></th:block>
+	<div class="container">
+
+		<br /> <br /> <br />
+		<h2>야구팀 목록 보기 및 삭제 페이지</h2>
+		<br /> <br />
+		<div class="col-md-9">
+			<table class="table table-list-search">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>groundId</th>
+						<th>팀 이름</th>
+					</tr>
+				</thead>
+				<tbody class="team-list" >
+					<tr th:each="teamList : ${teamLists}">
+						<td th:text="${teamList.no}"></td>
+						<td th:text="${teamList.groundId}"></td>
+						<td th:text="${teamList.teamName}"></td>
+						<td><button class="btn btn-success" th:onclick="teamDelete([[${teamList.id}]])">삭제</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<script src="/js/team.js"></script>
+<br/><br/><br/>
+<th:block th:replace="layout/footer"></th:block>
